@@ -169,6 +169,7 @@ int main(int argc, char **argv)
 
 	struct hexdump *hex = malloc (sizeof (struct hexdump));
 	hex->length = -1;
+	hex->skip = 0;
 	INIT_LIST_HEAD(&hex->fshead);
 
 	setlocale(LC_ALL, "");
