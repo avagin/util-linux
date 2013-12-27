@@ -165,11 +165,13 @@ int main(int argc, char **argv)
 {
 	struct list_head *p;
 	struct hexdump_fs *tfs;
+	int ret;
 	char *c;
 
 	struct hexdump *hex = malloc (sizeof (struct hexdump));
 	hex->length = -1;
 	hex->skip = 0;
+	hex->exitval = 0;
 	INIT_LIST_HEAD(&hex->fshead);
 
 	setlocale(LC_ALL, "");
@@ -197,8 +199,9 @@ int main(int argc, char **argv)
 
 	next(argv, hex);
 	display(hex);
+	ret = hex->exitval;
 	hex_free(hex);
-	return hex->exitval;
+	return ret;
 }
 
 void hex_free(struct hexdump *hex)
